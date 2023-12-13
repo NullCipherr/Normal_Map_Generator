@@ -10,8 +10,20 @@ import numpy as np
 import cv2
 import os
 
+# Define the path to the input folder.
+input_folder = "Input"
+
+# Define the Output folder
+output_folder = "Output"
+
 # Define the debugging folder
 depuration_folder = "Depuration"
+
+# Path of the input image.
+input_image = "Texture.jpg"
+
+# Define complete input image path
+input_image_path = os.path.join(input_folder, input_image)
 
 ##############################################################################
 # Function 'load_image': Loads any image.
@@ -42,9 +54,9 @@ def load_image(input_path):
 #   - output_folder: Folder where the image will be saved.
 ##############################################################################
 def save_image(image, output_name, output_folder):
-
+    
     print("\nOutput name -> ", output_name, "\nOutput folder -> ", output_folder)
-
+    
     # Create the complete path to the location
     output_path = os.path.join(output_folder, output_name)
 
@@ -101,16 +113,7 @@ def calculate_normal_map(image):
     return (normal_map * 128 + 128).astype(np.uint8)
 
 
-if __name__ == "__main__":
-
-    # Path of the input image.
-    input_image = "Texture.jpg"
-
-    # Path to the input folder.
-    input_folder = "Input"
-
-    # Load the input image.
-    input_image_path = os.path.join(input_folder, input_image)
+if __name__ == "__main__" :
 
     # Load the input image.
     input_image = load_image(input_image_path)
@@ -120,4 +123,4 @@ if __name__ == "__main__":
         normalMap = calculate_normal_map(input_image)
 
         # Save the input image.
-        save_image(normalMap, "Normal_Map.jpg", "Output")
+        save_image(normalMap, "Normal_Map.jpg", output_folder)
